@@ -135,64 +135,34 @@
                         <div class="col-lg-3 col-md-6">
                             <div class="stat-card">
                                 <i class="fas fa-users"></i>
-                                <h4>1,250</h4>
-                                <p>Total Users</p>
+                                <h4>{{data.total}}</h4>
+                                <p>Total Predictions</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="stat-card">
                                 <i class="fas fa-briefcase"></i>
-                                <h4>860</h4>
-                                <p>Active Jobs</p>
+                                <h4>{{data.positive}}</h4>
+                                <p>Leave</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="stat-card">
                                 <i class="fas fa-chart-line"></i>
-                                <h4>92%</h4>
-                                <p>Prediction Accuracy</p>
+                                <h4>{{data.negative}}</h4>
+                                <p>Stay</p>
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-6">
                             <div class="stat-card">
                                 <i class="fas fa-clipboard-list"></i>
-                                <h4>540</h4>
-                                <p>Completed Jobs</p>
+                                <h4>Model Accuracy</h4>
+                                <p>71%</p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Prediction History Section -->
-                    <h5>Prediction History</h5>
-                    <table class="table table-bordered">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>Job Title</th>
-                                <th>Prediction</th>
-                                <th>Confidence Score</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Example row, to be dynamically updated -->
-                            <tr>
-                                <td>Software Engineer</td>
-                                <td>Hire</td>
-                                <td>89%</td>
-                                <td>2024-09-25</td>
-                            </tr>
-                            <tr>
-                                <td>Data Analyst</td>
-                                <td>Reject</td>
-                                <td>76%</td>
-                                <td>2024-09-24</td>
-                            </tr>
-                            <!-- More rows -->
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Job Prediction Form Section -->
+                     <!-- Job Prediction Form Section -->
                 <div class="form-container mb-5">
                     <h2>Job Prediction Form</h2>
                     <form id="prediction-form">
@@ -238,6 +208,36 @@
                         </div>
                     </form>
                 </div>
+
+                    <!-- Prediction History Section -->
+                    <h5>Prediction History</h5>
+                    <table class="table table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Job Title</th>
+                                <th>Prediction</th>
+                                <th>Confidence Score</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Example row, to be dynamically updated -->
+                            <tr>
+                                <td>Software Engineer</td>
+                                <td>Hire</td>
+                                <td>89%</td>
+                                <td>2024-09-25</td>
+                            </tr>
+                            <tr>
+                                <td>Data Analyst</td>
+                                <td>Reject</td>
+                                <td>76%</td>
+                                <td>2024-09-24</td>
+                            </tr>
+                            <!-- More rows -->
+                        </tbody>
+                    </table>
+                </div> 
             </div>
         </div>
     </div>
