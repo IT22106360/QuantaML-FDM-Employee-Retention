@@ -7,7 +7,7 @@ import pickle
 with open('static/model/selected_model.pkl', 'rb') as file:
     model = pickle.load(file)
 
-def get_predictions(city_development_index, relevant_experience, education_level, experience, last_new_job):
+def get_predictions(city_development_index, relevant_experience, education_level, experience, last_new_job_gap):
     #relevant experience encoding
     relevant_experience = 1 if relevant_experience == 'Yes' else 0
 
@@ -29,7 +29,7 @@ def get_predictions(city_development_index, relevant_experience, education_level
             relevant_experience,
             education_level,
             experience,
-            last_new_job
+            last_new_job_gap
         ]])
 
     prediction = model.predict(input_features)
