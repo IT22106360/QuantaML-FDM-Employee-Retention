@@ -18,6 +18,8 @@ def index():
         'negative': state['negative'],
         'total': total
     }
+
+    print('======= Open home page ========')
     return render_template('index.html', data=data)
 
 @app.route("/", methods=['POST'])
@@ -29,8 +31,13 @@ def my_post():
     total_experience = request.form['total_experience']
     last_new_job_gap = request.form['last_new_job_gap']
 
+    print(f"City Development Index: {city_development_index}, Relevant Experience: {relevent_experience}, Education Level: {education_level}, Total Experience: {total_experience}, Last New Job Gap: {last_new_job_gap}")
+
+
     # Get prediction from the helper function
     prediction = get_predictions(city_development_index, relevent_experience, education_level, total_experience, last_new_job_gap)
+
+    print(f'Prediction: {prediction}')
 
     # Update counts based on prediction
     if prediction == 1:
