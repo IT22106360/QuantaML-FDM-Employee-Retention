@@ -14,7 +14,8 @@
         /* Sidebar Styling */
         body {
             display: flex;
-            flex-direction: column; /* Changed to column for footer alignment */
+            flex-direction: column;
+            /* Changed to column for footer alignment */
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -38,7 +39,8 @@
 
         /* Content Styling */
         .content {
-            flex-grow: 1; /* Allow content to grow */
+            flex-grow: 1;
+            /* Allow content to grow */
             padding: 20px;
             background-color: #f8f9fa;
         }
@@ -50,7 +52,8 @@
             background-color: #fff;
             border-bottom: 1px solid #dee2e6;
             display: flex;
-            justify-content: center; /* Center the content */
+            justify-content: center;
+            /* Center the content */
             align-items: center;
             position: fixed;
             z-index: 1000;
@@ -106,22 +109,69 @@
         /* Centering Analytics Section */
         #analytics-section {
             display: flex;
-            justify-content: center; /* Center cards horizontally */
-            gap: 20px; /* Space between cards */
-            margin-bottom: 40px; /* Space below analytics section */
+            justify-content: center;
+            /* Center cards horizontally */
+            gap: 20px;
+            /* Space between cards */
+            margin-bottom: 40px;
+            /* Space below analytics section */
             flex-wrap: wrap;
-            width: 100%; /* Set the desired width (e.g., 80% of its parent container) */
+            width: 100%;
+            /* Set the desired width (e.g., 80% of its parent container) */
         }
+
+        #preloader {
+            background-color: #fff;
+            /* Background color without the GIF */
+            height: 100vh;
+            width: 100%;
+            position: fixed;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            /* Center content horizontally */
+            align-items: center;
+            /* Center content vertically */
+        }
+
+        .preloader-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .loading-icon {
+            background: url(../static/img/Hourglass.gif) no-repeat center center;
+            background-size: 50px;
+            /* Adjust size as needed */
+            width: 50px;
+            height: 50px;
+        }
+
+        #preloader p {
+            margin-top: 15px;
+            /* Adjust spacing between GIF and text */
+            font-size: 1.2rem;
+            color: black;
+        }
+
 
         /* Footer Styling */
         footer {
-            background-color: #343a40; /* Dark background */
-            color: #fff; /* White text */
-            text-align: center; /* Centered text */
-            padding: 10px 0; /* Padding for spacing */
-            position: relative; /* Allow footer to be at the bottom */
-            bottom: 0; /* Stick to bottom */
-            width: 100%; /* Full width */
+            background-color: #343a40;
+            /* Dark background */
+            color: #fff;
+            /* White text */
+            text-align: center;
+            /* Centered text */
+            padding: 10px 0;
+            /* Padding for spacing */
+            position: relative;
+            /* Allow footer to be at the bottom */
+            bottom: 0;
+            /* Stick to bottom */
+            width: 100%;
+            /* Full width */
         }
 
         /* Modal Styling */
@@ -150,6 +200,12 @@
 </head>
 
 <body>
+    <div id="preloader">
+        <div class="preloader-content">
+            <div class="loading-icon"></div>
+            <p>Please Wait...</p>
+        </div>
+    </div>
     <!-- Main Content -->
     <div class="content flex-grow-1">
         <!-- Top Navbar -->
@@ -286,6 +342,15 @@
                 });
             });
         });
+    </script>
+    <script>
+        var loader = document.getElementById("preloader");
+        window.addEventListener("load", function () {
+            setTimeout(function () {
+                loader.style.display = "none";
+            }, 1000);
+        })
+
     </script>
 
     <!-- Prediction Modal -->
