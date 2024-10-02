@@ -325,11 +325,23 @@
                 // Send AJAX request to server
                 $.ajax({
                     type: 'POST',
-                    url: '/predict', // Your prediction endpoint
+                    url: '/', // Your prediction endpoint
                     data: formData,
                     success: function (response) {
-                        const predictedResult = response.prediction; // Adjust based on your response structure
-                        $('#predictionModal .modal-body').html(predictedResult); // Inject prediction result
+                        const predictedResult = response.prediction;
+                        
+                         // Construct a sentence based on the prediction result
+                let predictionSentence = '';
+                if (predictedResult === 1) {
+                    predictionSentence = 'The model predicts that the employee is likely to leave the job.';
+                } else if (predictedResult === 0) {
+                    predictionSentence = 'The model predicts that the employee is likely to stay at the job.';
+                }
+                        
+                            
+                        
+                        // Adjust based on your response structure
+                        $('#predictionModal .modal-body').html(predictionSentence); // Inject prediction result
 
                         // Show the modal
                         $('#predictionModal').modal('show');
