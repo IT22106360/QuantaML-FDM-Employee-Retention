@@ -14,6 +14,7 @@
         /* Sidebar Styling */
         body {
             display: flex;
+            flex-direction: column; /* Changed to column for footer alignment */
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -37,7 +38,7 @@
 
         /* Content Styling */
         .content {
-            width: 100%;
+            flex-grow: 1; /* Allow content to grow */
             padding: 20px;
             background-color: #f8f9fa;
         }
@@ -49,7 +50,7 @@
             background-color: #fff;
             border-bottom: 1px solid #dee2e6;
             display: flex;
-            justify-content: space-between;
+            justify-content: center; /* Center the content */
             align-items: center;
             position: fixed;
             z-index: 1000;
@@ -102,6 +103,25 @@
             color: #6c757d;
         }
 
+        /* Centering Analytics Section */
+        #analytics-section {
+            display: flex;
+            justify-content: center; /* Center cards horizontally */
+            gap: 20px; /* Space between cards */
+            margin-bottom: 40px; /* Space below analytics section */
+        }
+
+        /* Footer Styling */
+        footer {
+            background-color: #343a40; /* Dark background */
+            color: #fff; /* White text */
+            text-align: center; /* Centered text */
+            padding: 10px 0; /* Padding for spacing */
+            position: relative; /* Allow footer to be at the bottom */
+            bottom: 0; /* Stick to bottom */
+            width: 100%; /* Full width */
+        }
+
         /* Modal Styling */
         .modal-header {
             background-color: #007bff;
@@ -135,14 +155,6 @@
             <div class="navbar-brand">
                 Job Prediction & Analytics
             </div>
-            <div>
-                <a href="#" class="text-decoration-none text-dark me-3">
-                    <i class="fas fa-bell"></i>
-                </a>
-                <a href="#" class="text-decoration-none text-dark">
-                    <i class="fas fa-user-circle fa-lg"></i>
-                </a>
-            </div>
         </nav>
 
         <!-- Main Content Area -->
@@ -150,27 +162,32 @@
             <div class="container">
                 <!-- Analytics Section -->
                 <div id="analytics-section" class="mb-5">
-                    <div class="row g-3 mb-4">
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stat-card">
-                                <i class="fas fa-users"></i>
-                                <h4 data-stat="total">{{ data.total }}</h4> <!-- Total Predictions -->
-                                <p>Total Predictions</p>
-                            </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-card">
+                            <i class="fas fa-users"></i>
+                            <h4 data-stat="total">{{ data.total }}</h4> <!-- Total Predictions -->
+                            <p>Total Predictions</p>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stat-card">
-                                <i class="fas fa-briefcase"></i>
-                                <h4 data-stat="positive">{{ data.positive }}</h4> <!-- Leave (Positive Predictions) -->
-                                <p>Leave</p>
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-card">
+                            <i class="fas fa-briefcase"></i>
+                            <h4 data-stat="positive">{{ data.positive }}</h4> <!-- Leave (Positive Predictions) -->
+                            <p>Leave</p>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="stat-card">
-                                <i class="fas fa-chart-line"></i>
-                                <h4 data-stat="negative">{{ data.negative }}</h4> <!-- Stay (Negative Predictions) -->
-                                <p>Stay</p>
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h4 data-stat="negative">{{ data.negative }}</h4> <!-- Stay (Negative Predictions) -->
+                            <p>Stay</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="stat-card">
+                            <i class="fas fa-check-circle"></i> <!-- Icon for Accuracy -->
+                            <h4>71%</h4> <!-- Model Accuracy -->
+                            <p>Model Accuracy</p>
                         </div>
                     </div>
                 </div>
@@ -228,86 +245,51 @@
                 </div>
 
                 <!-- Prediction History Section -->
-<h5>Prediction History</h5>
-<table class="table table-bordered">
-    <thead class="thead-dark">
-        <tr>
-            <th>City Development Index</th>
-            <th>Relevant Experience</th>
-            <th>Education Level</th>
-            <th>Total Experience (Years)</th>
-            <th>Last New Job Gap (Years)</th>
-            <th>Prediction</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for entry in data.history %}
-        <tr>
-            <td>{{ entry.city_development_index }}</td>
-            <td>{{ entry.relevent_experience }}</td>
-            <td>{{ entry.education_level }}</td>
-            <td>{{ entry.total_experience }}</td>
-            <td>{{ entry.last_new_job_gap }}</td>
-            <td>{{ entry.prediction }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
             </div>
         </div>
     </div>
-    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p class="mb-0">&copy; Team QuantaML</p>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom Script for Modal -->
     <script>
         $(document).ready(function () {
-            $('#prediction-form').on('submit', function (event) {
-                event.preventDefault(); // Prevent the form from submitting normally
+            // Form submission handling
+            $('#prediction-form').submit(function (event) {
+                event.preventDefault(); // Prevent default form submission
+                const formData = $(this).serialize(); // Serialize form data
 
-                // Gather form data
-                const formData = $(this).serialize();
-
-                // Send form data to the server using AJAX
+                // Send AJAX request to server
                 $.ajax({
                     type: 'POST',
-                    url: '/',  // Your form action URL (Flask route)
+                    url: '/predict', // Your prediction endpoint
                     data: formData,
                     success: function (response) {
-                        const predictedResult = response.prediction == 1 ? "Leaving" : "Not Leaving";
-                        const modalBody = `The employee is predicted to be <strong>${predictedResult}</strong>.`;
+                        const predictedResult = response.prediction; // Adjust based on your response structure
+                        $('#predictionModal .modal-body').html(predictedResult); // Inject prediction result
 
+                        // Show the modal
+                        $('#predictionModal').modal('show');
 
-                        // Display the modal with the prediction result
-                        $('#predictionModal .modal-body').html(modalBody);
-                        const modal = new bootstrap.Modal(document.getElementById('predictionModal'));
-                        modal.show();
-
-                        // When modal is closed, update the totals
-                        $('#predictionModal').on('hidden.bs.modal', function () {
-                            // Update the totals on the page dynamically
-                            $('h4[data-stat="total"]').text(response.total);
-                            $('h4[data-stat="positive"]').text(response.positive);
-                            $('h4[data-stat="negative"]').text(response.negative);
-                        });
-                    },
-                    error: function () {
-                        alert('An error occurred. Please try again.');
+                        // Update statistics dynamically
+                        $('h4[data-stat="total"]').text(response.total);
+                        $('h4[data-stat="positive"]').text(response.positive);
+                        $('h4[data-stat="negative"]').text(response.negative);
                     }
                 });
             });
         });
     </script>
 
-
-    <!-- Prediction Result Modal -->
+    <!-- Prediction Modal -->
     <div class="modal fade" id="predictionModal" tabindex="-1" aria-labelledby="predictionModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="predictionModalLabel">Prediction Result</h5>
