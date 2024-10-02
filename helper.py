@@ -32,9 +32,10 @@ def get_predictions(city_development_index, relevant_experience, education_level
             last_new_job_gap
         ]])
 
-    prediction = model.predict(input_features)
-    
-    predict_int = int(prediction[0])
+    prediction = model.predict_proba(input_features)
+    output = round(prediction[0][1], 2)
 
-    return predict_int
+    binary_prediction = 1 if output >= 0.5 else 0
+
+    return binary_prediction
 
