@@ -12,6 +12,8 @@ state = {
     'negative': 0
 }
 
+prediction_history = []
+
 @app.route("/")
 def index():
     # Prepare data for rendering
@@ -45,8 +47,19 @@ def my_post():
     # Update counts based on prediction
     if prediction == 1:
         state['positive'] += 1  # looking for a job change
+        prediction_result = "Leave"
     else:
-        state['negative'] += 1  # not looking for a job change 
+        state['negative'] += 1  # not looking for a job change
+        prediction_result = "Stay" 
+    
+    prediction_history.append({
+        'city_development_index': city_development_index,
+        'relevent_experience': relevent_experience,
+        'education_level': education_level,
+        'total_experience': total_experience,
+        'last_new_job_gap': last_new_job_gap,
+        'prediction': prediction_result  # Add prediction result (Leave/Stay)
+    })
 
     total = state['positive'] + state['negative']
     return jsonify({

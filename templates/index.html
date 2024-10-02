@@ -228,33 +228,32 @@
                 </div>
 
                 <!-- Prediction History Section -->
-                <h5>Prediction History</h5>
-                <table class="table table-bordered">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Job Title</th>
-                            <th>Prediction</th>
-                            <th>Confidence Score</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Example row, to be dynamically updated -->
-                        <tr>
-                            <td>Software Engineer</td>
-                            <td>Hire</td>
-                            <td>89%</td>
-                            <td>2024-09-25</td>
-                        </tr>
-                        <tr>
-                            <td>Data Analyst</td>
-                            <td>Reject</td>
-                            <td>76%</td>
-                            <td>2024-09-24</td>
-                        </tr>
-                        <!-- More rows -->
-                    </tbody>
-                </table>
+<h5>Prediction History</h5>
+<table class="table table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>City Development Index</th>
+            <th>Relevant Experience</th>
+            <th>Education Level</th>
+            <th>Total Experience (Years)</th>
+            <th>Last New Job Gap (Years)</th>
+            <th>Prediction</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in data.history %}
+        <tr>
+            <td>{{ entry.city_development_index }}</td>
+            <td>{{ entry.relevent_experience }}</td>
+            <td>{{ entry.education_level }}</td>
+            <td>{{ entry.total_experience }}</td>
+            <td>{{ entry.last_new_job_gap }}</td>
+            <td>{{ entry.prediction }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
             </div>
         </div>
     </div>
