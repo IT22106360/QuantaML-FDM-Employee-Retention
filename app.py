@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, jsonify
 from helper import get_predictions
+from logger import logging
 
 app = Flask(__name__)
+
+logging.info('Flask app started')
 
 # Initialize state variables
 state = {
@@ -19,7 +22,7 @@ def index():
         'total': total
     }
 
-    print('======= Open home page ========')
+    logging.info('======= Open home page ========')
     return render_template('index.html', data=data)
 
 @app.route("/", methods=['POST'])
@@ -31,13 +34,13 @@ def my_post():
     total_experience = request.form['total_experience']
     last_new_job_gap = request.form['last_new_job_gap']
 
-    print(f"City Development Index: {city_development_index}, Relevant Experience: {relevent_experience}, Education Level: {education_level}, Total Experience: {total_experience}, Last New Job Gap: {last_new_job_gap}")
+    logging.info(f"City Development Index: {city_development_index}, Relevant Experience: {relevent_experience}, Education Level: {education_level}, Total Experience: {total_experience}, Last New Job Gap: {last_new_job_gap}")
 
 
     # Get prediction from the helper function
     prediction = get_predictions(city_development_index, relevent_experience, education_level, total_experience, last_new_job_gap)
 
-    print(f'Prediction: {prediction}')
+    logging.info(f'Prediction: {prediction}')
 
     # Update counts based on prediction
     if prediction == 1:
