@@ -1,7 +1,3 @@
-Here’s a concise, clear, and narrative-style README for your binary classification project:
-
----
-
 # Employee Retention Prediction
 
 ## Project Overview
