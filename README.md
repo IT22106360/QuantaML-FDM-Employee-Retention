@@ -16,23 +16,26 @@ The company needs to categorize candidates into two groups:
 
 By solving this problem, the company can make informed decisions to tailor their training programs and improve resource allocation.
 
-## Dataset
-enrollee_id : Unique ID for candidate.
-city: City code.
-city_ development _index : Developement index of the city (scaled).
-gender: Gender of candidate
-relevent_experience: Relevant experience of candidate
-enrolled_university: Type of University course enrolled if any
-*education_level: Education level of candidate
-*major_discipline* :Education major discipline of candidate
-*experience*: Candidate total experience in years
-*company_size*: No of employees in current employer's company
-*company_type* : Type of current employer
-*last_new_job*: Difference in years between previous job and current job
-*training_hours*: training hours completed
-*target*: 0 – Not looking for job change, 1 – Looking for a job change
 
-  
+## Dataset
+
+The dataset used in this project contains the following features:
+
+- **enrollee_id**: Unique ID for each candidate.
+- **city**: Code representing the candidate's city.
+- **city_development_index**: Development index of the city, scaled for comparison.
+- **gender**: Gender of the candidate (e.g., Male, Female, Other).
+- **relevant_experience**: Whether the candidate has relevant work experience.
+- **enrolled_university**: Type of university course the candidate is enrolled in, if any (e.g., Full-time, Part-time, or no enrollment).
+- **education_level**: Highest education level attained by the candidate (e.g., Graduate, Masters, PhD).
+- **major_discipline**: Major field of study (e.g., STEM, Business, Arts).
+- **experience**: Total work experience of the candidate in years.
+- **company_size**: Number of employees in the candidate's current employer.
+- **company_type**: Type of current employer (e.g., Private, Public, NGO).
+- **last_new_job**: Number of years since the candidate's previous job change.
+- **training_hours**: Total number of training hours completed by the candidate.
+- **target**: Binary label where `0` indicates the candidate is not looking for a job change, and `1` indicates the candidate is looking for a job change.
+
 These features are used to train the model to predict whether a candidate is likely to stay or leave after completing the courses.
 
 ## Approach
