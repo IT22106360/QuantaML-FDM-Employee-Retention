@@ -17,13 +17,13 @@ The company needs to categorize candidates into two groups:
 By solving this problem, the company can make informed decisions to tailor their training programs and improve resource allocation.
 
 ## Dataset
-*enrollee_id* : Unique ID for candidate.
-*city*: City code.
-*city_ development _index* : Developement index of the city (scaled).
-*gender*: Gender of candidate
-*relevent_experience*: Relevant experience of candidate
-*enrolled_university*: Type of University course enrolled if any
-*education_level*: Education level of candidate
+enrollee_id : Unique ID for candidate.
+city: City code.
+city_ development _index : Developement index of the city (scaled).
+gender: Gender of candidate
+relevent_experience: Relevant experience of candidate
+enrolled_university: Type of University course enrolled if any
+*education_level: Education level of candidate
 *major_discipline* :Education major discipline of candidate
 *experience*: Candidate total experience in years
 *company_size*: No of employees in current employer's company
